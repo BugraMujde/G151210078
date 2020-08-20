@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace G151210078.Models
 {
+
     public class Product
     {
         [Key]
@@ -29,16 +31,16 @@ namespace G151210078.Models
         [Column(TypeName = "nvarchar(50)")]
         public string Size { get; set; }
 
-        [Column(TypeName = "nvarchar(50)")]
-        public string Type { get; set; }
+        [Column(TypeName = "float")]
+        public float Price { get; set; }
 
         [Column(TypeName = "nvarchar(400)")]
         [DisplayName("Image Name")]
         public string ImageName { get; set; }
 
-
         [NotMapped]
         [DisplayName("Upload File")]
         public IFormFile Image { get; set; }
     }
+
 }

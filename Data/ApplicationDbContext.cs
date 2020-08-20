@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using G151210078.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -15,5 +16,6 @@ namespace G151210078.Data
         }
         public DbSet<Product> Products { get; set; }
     }
+
 }
 

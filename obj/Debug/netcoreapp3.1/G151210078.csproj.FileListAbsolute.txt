@@ -176,3 +176,4 @@ C:\Users\Que\source\repos\G151210078\obj\Debug\netcoreapp3.1\Razor\Views\Product
 C:\Users\Que\source\repos\G151210078\obj\Debug\netcoreapp3.1\G151210078.csprojAssemblyReference.cache
 C:\Users\Que\source\repos\G151210078\obj\Debug\netcoreapp3.1\G151210078.csproj.CoreCompileInputs.cache
 C:\Users\Que\source\repos\G151210078\obj\Debug\netcoreapp3.1\G151210078.genruntimeconfig.cache
+C:\Users\Que\source\repos\G151210078\obj\Debug\netcoreapp3.1\Razor\Views\Home\ProductDetail.cshtml.g.cs
