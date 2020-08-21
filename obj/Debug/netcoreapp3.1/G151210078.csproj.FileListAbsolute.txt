@@ -173,6 +173,7 @@ C:\Users\Que\source\repos\G151210078\obj\Debug\netcoreapp3.1\Razor\Views\Product
 C:\Users\Que\source\repos\G151210078\obj\Debug\netcoreapp3.1\Razor\Views\Products\Index.cshtml.g.cs
 C:\Users\Que\source\repos\G151210078\obj\Debug\netcoreapp3.1\G151210078.genruntimeconfig.cache
 C:\Users\Que\source\repos\G151210078\obj\Debug\netcoreapp3.1\Razor\Views\Home\ProductDetail.cshtml.g.cs
+<<<<<<< HEAD
 C:\Users\Que\source\repos\G151210078\obj\Debug\netcoreapp3.1\G151210078.csproj.CoreCompileInputs.cache
 C:\Users\Que\source\repos\G151210078\obj\Debug\netcoreapp3.1\G151210078.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Que\source\repos\G151210078\obj\Debug\netcoreapp3.1\G151210078.MvcApplicationPartsAssemblyInfo.cache
@@ -192,3 +193,5 @@ C:\Users\Que\source\repos\G151210078\obj\Debug\netcoreapp3.1\Razor\Views\Role\In
 C:\Users\Que\source\repos\G151210078\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Index.cshtml.g.cs
 C:\Users\Que\source\repos\G151210078\obj\Debug\netcoreapp3.1\G151210078.csprojAssemblyReference.cache
 C:\Users\Que\source\repos\G151210078\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Users.cshtml.g.cs
+=======
+>>>>>>> 0b0c4d093ba1d1e8215ae0a2e948abf1ef72627b

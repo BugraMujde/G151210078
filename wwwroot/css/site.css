@@ -70,6 +70,7 @@ body {
   line-height: 60px; /* Vertically center the text there */
 }
 
+<<<<<<< HEAD
 .single {
     padding: 30px 15px;
     margin-top: 40px;
@@ -116,3 +117,5 @@ body {
     .single li:last-child a {
         border-bottom: 0;
     }
+=======
+>>>>>>> 0b0c4d093ba1d1e8215ae0a2e948abf1ef72627b
