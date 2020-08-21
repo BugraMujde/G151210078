@@ -26,14 +26,49 @@ namespace G151210078.Controllers
             this._hostEnvironment = hostEnvironment;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string category , string brand, string categoryBrand)
         {
+            List<string> categoryList = new List<string>();
+            List<string> brandList = new List<string>();
+            foreach (var items in _context.Products)
+            {
+                categoryList.Add(items.Category);
+                brandList.Add(items.Brand);
+            }
+            IEnumerable<string> distinctCategories = categoryList.AsQueryable().Distinct();
+            IEnumerable<string> distinctBrands = brandList.AsQueryable().Distinct();
+
+            
+            ViewBag.Brands = distinctBrands;
+            ViewBag.Categories = distinctCategories;
+            ViewBag.Brand = string.Format("{0}", brand);
+            ViewBag.CategoryBrand = string.Format("{0}", categoryBrand);
+            ViewBag.Category = string.Format("{0}", category);
             return View(await _context.Products.ToListAsync());
         }
+
+
 
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public async Task<IActionResult> ProductDetail(int? DetailId)
+        {
+            if (DetailId == null)
+            {
+                return NotFound();
+            }
+
+            var product = await _context.Products
+                .FirstOrDefaultAsync(m => m.ID == DetailId);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

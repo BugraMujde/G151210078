@@ -1,4 +1,5 @@
-﻿@model IEnumerable<G151210078.Models.Product>
+﻿
+@model IEnumerable<G151210078.Models.Product>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -27,22 +28,150 @@
 <br />
 
 
+<div class="container pt-100 mb-5">
+    <div class="row">
+        <div class="col-3">
+            <h5>Kategoriler</h5>
+            <!-- Category -->
+            <div class="single category">
+                @foreach (var item in ViewBag.Categories)
+                {
+                    <form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="Index" class="side-title">
+                        <input type="hidden" asp-for="@item" name="category" />
+                        <input type="submit" style="font-size: 23px; background-color:transparent; color: orange; border: none;" value="@item" />
+                    </form>
+
+                    <ul class="list-unstyled">
+                        @{var holder = "";}
+                        @foreach (var mod in Model)
+                        {
+                            @foreach (var brand in ViewBag.Brands)
+                            {
+                                @if (mod.Category == item && mod.Brand == brand)
+                                {
+
+                                    @if (holder != brand)
+                                    {
+                                        <li class="list-group-item" style="border:none; background-color:transparent; width:120px; ">
+                                            <form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="Index">
+                                                <input type="hidden" asp-for="@mod.Brand" name="brand" />
+                                                <input type="hidden" asp-for="@mod.Category" name="categoryBrand" />
+                                                <input type="submit" style="background-color:transparent; border:none; " value="@brand" />
+                                            </form>
+                                        </li>
+                                    }
+                                    holder = brand;
+
+                                }
+                            }
+                        }
+
+                    </ul>
+                }
+            </div>
 
 
-<div class="row">
-    @foreach (var item in Model)
-    {
-        <div class="col-md-3" style="margin-bottom:40px">
-            <div class="card">
-                <img class="card-img-top" src="~/images/@item.ImageName" width="180px" height="350px" alt="Card image">
-                <article class="card-body">
-                    <hr>
-                    <h4 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h4>
-                    <p class="card-text">@Html.DisplayFor(modelItem => item.Brand)</p>
-                    <p class="card-text">@Html.DisplayFor(modelItem => item.Category)</p>
+        </div>
+        <div class="col-9 ">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-warning">
+                        <div class="form-inline float-right m-0 p-0">
+                            <select class="form-control-sm"
+                                    [value]="productsPerPage"
+                                    (change)="changePageSize($event.target.value)">
+                                <option value="2">2 tane</option>
+                                <option value="3">3 tane</option>
+                                <option value="4">4 tane</option>
+                                <option value="6">6 tane</option>
+                                <option value="8">8 tane</option>
+                            </select>
+                        </div>
+                        {{ Products.length }} tane ürün bulundu.
+                    </div>
+                </div>
+            </div>
 
-                </article>
+            <product-list [products]="products"></product-list>
+
+            <div class="row mt-3">
+                <div class="col">
+                    <div class="row">
+                        @foreach (var item in Model)
+                        {
+                            @if (item.Brand == ViewBag.Brand && item.Category == @ViewBag.CategoryBrand)
+                            {
+                                <div class="col-md-4" style="margin-bottom:40px">
+                                    <div class="card">
+                                        <form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="ProductDetail">
+                                            <input type="hidden" asp-for="@item.ID" name="DetailId" />
+                                            <button type="submit" style="background-color:white; border:none;">
+                                                <img class="card-img-top" src="~/images/@item.ImageName" width="180px" height="350px" alt="Card image">
+                                                <article class="card-body">
+                                                    <hr>
+                                                    <h4 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h4>
+                                                    <p class="card-text">@Html.DisplayFor(modelItem => item.Brand)</p>
+                                                    <p class="card-text">@Html.DisplayFor(modelItem => item.Category)</p>
+                                                </article>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            }
+                            else if (item.Category == @ViewBag.Category)
+                            {
+                                <div class="col-md-4" style="margin-bottom:40px">
+                                    <div class="card">
+                                        <form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="ProductDetail">
+                                            <input type="hidden" asp-for="@item.ID" name="DetailId" />
+                                            <button type="submit" style="background-color:white; border:none;">
+                                                <img class="card-img-top" src="~/images/@item.ImageName" width="180px" height="350px" alt="Card image">
+                                                <article class="card-body">
+                                                    <hr>
+                                                    <h4 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h4>
+                                                    <p class="card-text">@Html.DisplayFor(modelItem => item.Brand)</p>
+                                                    <p class="card-text">@Html.DisplayFor(modelItem => item.Category)</p>
+                                                </article>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            }
+                            else if (@ViewBag.Category == "" && @ViewBag.CategoryBrand == "")
+                            {
+                                <div class="col-md-4" style="margin-bottom:40px">
+                                    <div class="card">
+                                        <form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="ProductDetail">
+                                            <input type="hidden" asp-for="@item.ID" name="DetailId" />
+                                            <button type="submit" style="background-color:white; border:none;">
+                                                <img class="card-img-top" src="~/images/@item.ImageName" width="180px" height="350px" alt="Card image">
+                                                <article class="card-body">
+                                                    <hr>
+                                                    <h4 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h4>
+                                                    <p class="card-text">@Html.DisplayFor(modelItem => item.Brand)</p>
+                                                    <p class="card-text">@Html.DisplayFor(modelItem => item.Category)</p>
+                                                </article>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            }
+
+                        }
+                    </div>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
-    }
+    </div>
 </div>
+
+

@@ -9,9 +9,11 @@ using G151210078.Data;
 using G151210078.Models;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization;
 
 namespace G151210078.Controllers
 {
+    [Authorize (Roles = "Admin")]
     public class ProductsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -58,7 +60,7 @@ namespace G151210078.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Name,Category,Brand,Color,Size,Type,Image")] Product products)
+        public async Task<IActionResult> Create([Bind("ID,Name,Category,Brand,Color,Size,Price,Image")] Product products)
         {
             if (ModelState.IsValid)
             {
@@ -102,7 +104,7 @@ namespace G151210078.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Category,Brand,Color,Size,Type,Image")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Category,Brand,Color,Size,Price,Image")] Product product)
         {
             if (id != product.ID)
             {
